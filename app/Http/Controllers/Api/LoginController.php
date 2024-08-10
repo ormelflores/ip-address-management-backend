@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AuthenticateUserRequest;
 use App\Models\User;
+use App\Observers\UserActivityObserver;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,8 @@ class LoginController extends Controller
 
         $token = $user->createToken('authToken')->plainTextToken;
 
+        (new UserActivityObserver)->login();
+
         return response()->json([
             'message' => 'Login successful.',
             'data' => $this->loginSuccessfulResponse($user, $token),
@@ -35,6 +38,8 @@ class LoginController extends Controller
     {
         if (Auth::check())
         {
+            (new UserActivityObserver)->logout();
+
             Auth::user()->currentAccessToken()->delete();
         }
 
