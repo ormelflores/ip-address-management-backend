@@ -17,7 +17,8 @@ class IpAddressFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'ip_address' => fake()->ipv4(),
+            'label' => fake()->name(),
         ];
     }
 }
