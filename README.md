@@ -31,7 +31,7 @@ To setup account, run seeder on your local. You can check the <b>UserSeeder.php<
 ```shell
 php artisan db:seed
 ```
-
+After you set this up, proceed to the front-end setup instructions from <a href="https://github.com/ormelflores/ip-address-management-frontend">IP Management Frontend</a>. Use the account below as a login credentials.
 ```shell
 # Default email
 admin@email.com
