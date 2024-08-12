@@ -39,3 +39,14 @@ admin@email.com
 # Default password
 password
 ```
+### Unit Testing
+Before running the test command, make sure to run the following command to avoid the test use the actual database
+
+```shell
+php artisan config:cache
+php artisan config:clear
+```
+
+```shell
+# To run the test cases
+php artisan test --parallel
